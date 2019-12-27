@@ -2,9 +2,9 @@
 layout: page
 title: 关于
 slug: about
-date: 2017/06/28 17:26:00
+date: 2019/12/25 17:26:00
 status: publish
-author: AlanDecode
+author: bill
 categories: 
   - Maverick
   - Dev
@@ -12,11 +12,9 @@ tags:
   - theme
 ---
 
-这里是我的个人博客，通过 GitHub 管理与构建。
+建设这里是因为想积累一些资料，记住一些容易忘掉的事情。
 
 
 ## Contact
 
-Email: hi#imalan.cn (replace # with @)
-
-Telegram：[AlanDecode](https://t.me/alandecode)
+Email: libiao163@gmail.com
