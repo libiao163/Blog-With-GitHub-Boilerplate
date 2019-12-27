@@ -1,6 +1,6 @@
 ---
 layout: post
-title: mysql脚本
+title: mysql 脚本汇总
 slug: delete_big_tables
 date: 2019-12-27 16:23
 status: publish
@@ -10,7 +10,7 @@ categories:
 tags:
   - mysql
   - shell
-excerpt: mysql相关shell脚本
+excerpt: mysql数据库相关脚本
 ---
 
 - 删除大数据表
