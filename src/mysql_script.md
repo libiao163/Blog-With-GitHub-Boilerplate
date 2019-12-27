@@ -1,7 +1,7 @@
 ---
 layout: post
 title: mysql 脚本汇总
-slug: delete_big_tables
+slug: mysql_scripts
 date: 2019-12-27 16:23
 status: publish
 author: 酒后的阿bill
