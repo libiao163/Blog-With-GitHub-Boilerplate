@@ -14,7 +14,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 
     <url>
-        <loc>/archives/delete_big_tables/</loc>
+        <loc>/archives/mysql_scripts/</loc>
         <lastmod>2019-12-27</lastmod>
         <changefreq>always</changefreq>
         <priority>0.5</priority>
