@@ -27,7 +27,12 @@ external_links = [
     {
         "name": "coolshell",
         "url": "https://coolshell.cn/",
-        "brief": "陈皓"
+        "brief": "陈皓的博客"
+    },
+    {
+        "name": "ruanyf",
+        "url": "http://www.ruanyifeng.com/",
+        "brief": "阮一峰的博客"
     }
 ]
 nav = [
