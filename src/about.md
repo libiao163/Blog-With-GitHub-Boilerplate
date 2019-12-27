@@ -5,9 +5,6 @@ slug: about
 date: 2019/12/25 17:26:00
 status: publish
 author: bill
-categories: 
-  - Maverick
-  - Dev
 tags: 
   - theme
 ---
