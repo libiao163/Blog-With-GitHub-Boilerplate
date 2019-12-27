@@ -21,19 +21,20 @@
         }
     </script>
     
-<title></title>
+<title>删除大表shell脚本 - 悄悄生长</title>
 <meta name="author" content="酒后的阿bill" />
-<meta name="description" content="认真是我们参与这个社会的方式，认真是我们改变这个社会的方式" />
-<meta property="og:title" content="" />
-<meta property="og:description" content="认真是我们参与这个社会的方式，认真是我们改变这个社会的方式" />
+<meta name="description" content="删除大表shell脚本" />
+<meta property="og:title" content="删除大表shell脚本 - 悄悄生长" />
+<meta property="og:description" content="删除大表shell脚本" />
 <meta property="og:site_name" content="悄悄生长" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="" />
-<meta property="og:image" content="悄悄生长" />
-<meta name="twitter:title" content="" />
-<meta name="twitter:description" content="认真是我们参与这个社会的方式，认真是我们改变这个社会的方式" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/archives/delete_big_tables/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2019-12-27T16:23:00-00.00" />
+<meta name="twitter:title" content="删除大表shell脚本 - 悄悄生长" />
+<meta name="twitter:description" content="删除大表shell脚本" />
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/libiao163/libiao163.github.io@master/logo.png" />
+<meta name="twitter:image" content="" />
 
 
     
@@ -69,27 +70,88 @@
             <div class="wrapper">
                 
 <main>    
-    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">删除大表shell脚本</h1>
+            <span class="ga-post_meta ga-mono">
+                <span>酒后的阿bill</span>
+                <time>
+                    2019-12-27
+                </time>
+                
+                in <a no-style class="category" href="/category/devops/">
+                    devops
+                </a>
+                
+                
+            </span>
+            <div class="ga-content_body">
+                <h4>为了删除一些特别大的表</h4>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#</span>
+<span class="nv">dbname</span><span class="o">=</span><span class="s1">&#39;dbname&#39;</span>
+<span class="nv">tabname</span><span class="o">=</span><span class="s1">&#39;tablename&#39;</span>
+<span class="nv">step</span><span class="o">=</span><span class="s1">&#39;10000&#39;</span>
+<span class="nv">sleeptime</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">start_index</span><span class="o">=</span><span class="m">30000001</span>
+<span class="nv">end_index</span><span class="o">=</span><span class="m">39938589</span>
+<span class="nv">MYSQL</span><span class="o">=</span><span class="s2">&quot;mysql -u[user] -p[password] -t -e &quot;</span>
 
-<section id="ga-archive_list" class="ga-section" data-title="#博客">
-    <ul>
-        
-        <li>
-            <h1><a target="_self" class="ga-highlight" href="/archives/my-first-awesome-post/">ansible keywords</a></h1>
-            <time class="ga-mono" datetime="2019-12-25T20:15:00-00.00">
-                2019-12-25
-            </time>
-        </li>
-        
-    </ul>
+<span class="nv">i_start</span><span class="o">=</span><span class="nv">$start_index</span>
+<span class="nv">i_end</span><span class="o">=</span><span class="k">$(</span>expr <span class="s2">&quot;</span><span class="nv">$start_index</span><span class="s2">&quot;</span> + <span class="s2">&quot;</span><span class="nv">$step</span><span class="s2">&quot;</span><span class="k">)</span>
+<span class="nv">i_end</span><span class="o">=</span><span class="k">$(</span>expr <span class="s2">&quot;</span><span class="nv">$i_end</span><span class="s2">&quot;</span> - <span class="m">1</span><span class="k">)</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$i_end</span> -gt <span class="nv">$end_index</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="nv">i_end</span><span class="o">=</span><span class="nv">$end_index</span>
+<span class="k">fi</span>
+<span class="k">while</span> <span class="o">[</span> <span class="nv">$i_end</span> -le <span class="nv">$end_index</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>
+    <span class="nb">echo</span> <span class="s2">&quot;start delete from </span><span class="nv">$i_start</span><span class="s2"> to </span><span class="nv">$i_end</span><span class="s2">&quot;</span>
+    mysql delete delete from yitain where id &gt;<span class="o">=</span> <span class="nv">$i_start</span> and id &lt;<span class="o">=</span> <span class="nv">$i_end</span>
+    <span class="c1">#$MYSQL &quot;delete from $dbname.$tabname where id &gt;= $i_start and id &lt;= $i_end;&quot;</span>
+    <span class="nv">i_start</span><span class="o">=</span><span class="k">$(</span>expr <span class="s2">&quot;</span><span class="nv">$i_end</span><span class="s2">&quot;</span> + <span class="m">1</span><span class="k">)</span>
+    <span class="nv">i_end</span><span class="o">=</span><span class="k">$(</span>expr <span class="s2">&quot;</span><span class="nv">$i_end</span><span class="s2">&quot;</span> + <span class="s2">&quot;</span><span class="nv">$step</span><span class="s2">&quot;</span><span class="k">)</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$i_start</span> -gt <span class="nv">$end_index</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nb">break</span>
+    <span class="k">fi</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$i_end</span> -gt <span class="nv">$end_index</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+      <span class="nv">i_end</span><span class="o">=</span><span class="nv">$end_index</span>
+    <span class="k">fi</span>
+    sleep <span class="nv">$sleeptime</span>
+<span class="k">done</span>
+</pre></div>
+
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/tag/mysql/">#mysql</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/tag/shell/">#shell</a>
+    </span>
+    
+</div>
+    </section>
+
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <h3>没有了</h3>
+        <p class="yue">这是最新的文章</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/archives/my-first-awesome-post/">ansible keywords</a>
+        <p class="yue">ansible keywords</p>
+    </div>
+
 </section>
 
-<section class="ga-section ga-mono" id="ga-pager">
-    
-    <span>Page 1 of 1</span>
-    
-</section>
 
+    
 
 </main>
 

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>悄悄生长</title><link>/</link><description>认真是我们参与这个社会的方式，认真是我们改变这个社会的方式</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>${static_prefix}logo.png</url><title>悄悄生长</title><link>/</link></image><language>zh-CN</language><lastBuildDate>Fri, 27 Dec 2019 07:41:25 +0806</lastBuildDate><pubDate>Fri, 27 Dec 2019 07:41:25 +0806</pubDate><item><title>ansible keywords</title><link>/archives/my-first-awesome-post/</link><description>&lt;blockquote&gt;&lt;p&gt;ansible 2.9 版本&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>悄悄生长</title><link>/</link><description>认真是我们参与这个社会的方式，认真是我们改变这个社会的方式</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>${static_prefix}logo.png</url><title>悄悄生长</title><link>/</link></image><language>zh-CN</language><lastBuildDate>Fri, 27 Dec 2019 08:27:56 +0806</lastBuildDate><pubDate>Fri, 27 Dec 2019 08:27:56 +0806</pubDate><item><title>ansible keywords</title><link>/archives/my-first-awesome-post/</link><description>&lt;blockquote&gt;&lt;p&gt;ansible 2.9 版本&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;Play&lt;/h2&gt;
 &lt;blockquote&gt;&lt;p&gt;在 play 下可用的关键字&lt;/p&gt;
@@ -601,4 +601,36 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-</description><author>libiao163@gmail.com (酒后的阿bill)</author><guid isPermaLink="true">/archives/my-first-awesome-post/</guid><pubDate>Wed, 25 Dec 2019 20:15:00 +0806</pubDate></item></channel></rss>
+</description><author>libiao163@gmail.com (酒后的阿bill)</author><guid isPermaLink="true">/archives/my-first-awesome-post/</guid><pubDate>Wed, 25 Dec 2019 20:15:00 +0806</pubDate></item><item><title>删除大表shell脚本</title><link>/archives/delete_big_tables/</link><description>&lt;h4&gt;为了删除一些特别大的表&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;span class="nv"&gt;dbname&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dbname&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;tabname&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;tablename&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;step&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;10000&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;sleeptime&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+&lt;span class="nv"&gt;start_index&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;30000001&lt;/span&gt;
+&lt;span class="nv"&gt;end_index&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;39938589&lt;/span&gt;
+&lt;span class="nv"&gt;MYSQL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mysql -u[user] -p[password] -t -e &amp;quot;&lt;/span&gt;
+
+&lt;span class="nv"&gt;i_start&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$start_index&lt;/span&gt;
+&lt;span class="nv"&gt;i_end&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;expr &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$start_index&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; + &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$step&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;i_end&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;expr &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$i_end&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; - &lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="nv"&gt;$i_end&lt;/span&gt; -gt &lt;span class="nv"&gt;$end_index&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+  &lt;span class="nv"&gt;i_end&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$end_index&lt;/span&gt;
+&lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="nv"&gt;$i_end&lt;/span&gt; -le &lt;span class="nv"&gt;$end_index&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+    &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;start delete from &lt;/span&gt;&lt;span class="nv"&gt;$i_start&lt;/span&gt;&lt;span class="s2"&gt; to &lt;/span&gt;&lt;span class="nv"&gt;$i_end&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+    mysql delete delete from yitain where id &amp;gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$i_start&lt;/span&gt; and id &amp;lt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$i_end&lt;/span&gt;
+    &lt;span class="c1"&gt;#$MYSQL &amp;quot;delete from $dbname.$tabname where id &amp;gt;= $i_start and id &amp;lt;= $i_end;&amp;quot;&lt;/span&gt;
+    &lt;span class="nv"&gt;i_start&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;expr &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$i_end&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; + &lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+    &lt;span class="nv"&gt;i_end&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;expr &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$i_end&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; + &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$step&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="nv"&gt;$i_start&lt;/span&gt; -gt &lt;span class="nv"&gt;$end_index&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+        &lt;span class="nb"&gt;break&lt;/span&gt;
+    &lt;span class="k"&gt;fi&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="nv"&gt;$i_end&lt;/span&gt; -gt &lt;span class="nv"&gt;$end_index&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+      &lt;span class="nv"&gt;i_end&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$end_index&lt;/span&gt;
+    &lt;span class="k"&gt;fi&lt;/span&gt;
+    sleep &lt;span class="nv"&gt;$sleeptime&lt;/span&gt;
+&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</description><author>libiao163@gmail.com (酒后的阿bill)</author><guid isPermaLink="true">/archives/delete_big_tables/</guid><pubDate>Fri, 27 Dec 2019 16:23:00 +0806</pubDate></item></channel></rss>
