@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>悄悄生长</title><link>/</link><description>认真是我们参与这个社会的方式，认真是我们改变这个社会的方式</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>${static_prefix}logo.png</url><title>悄悄生长</title><link>/</link></image><language>zh-CN</language><lastBuildDate>Fri, 27 Dec 2019 08:27:56 +0806</lastBuildDate><pubDate>Fri, 27 Dec 2019 08:27:56 +0806</pubDate><item><title>ansible keywords</title><link>/archives/my-first-awesome-post/</link><description>&lt;blockquote&gt;&lt;p&gt;ansible 2.9 版本&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>悄悄生长</title><link>/</link><description>认真是我们参与这个社会的方式，认真是我们改变这个社会的方式</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>${static_prefix}logo.png</url><title>悄悄生长</title><link>/</link></image><language>zh-CN</language><lastBuildDate>Fri, 27 Dec 2019 09:26:36 +0806</lastBuildDate><pubDate>Fri, 27 Dec 2019 09:26:36 +0806</pubDate><item><title>ansible keywords</title><link>/archives/my-first-awesome-post/</link><description>&lt;blockquote&gt;&lt;p&gt;ansible 2.9 版本&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;Play&lt;/h2&gt;
 &lt;blockquote&gt;&lt;p&gt;在 play 下可用的关键字&lt;/p&gt;
@@ -601,7 +601,9 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-</description><author>libiao163@gmail.com (酒后的阿bill)</author><guid isPermaLink="true">/archives/my-first-awesome-post/</guid><pubDate>Wed, 25 Dec 2019 20:15:00 +0806</pubDate></item><item><title>删除大表shell脚本</title><link>/archives/delete_big_tables/</link><description>&lt;h4&gt;为了删除一些特别大的表&lt;/h4&gt;
+</description><author>libiao163@gmail.com (酒后的阿bill)</author><guid isPermaLink="true">/archives/my-first-awesome-post/</guid><pubDate>Wed, 25 Dec 2019 20:15:00 +0806</pubDate></item><item><title>mysql脚本</title><link>/archives/delete_big_tables/</link><description>&lt;ul&gt;
+&lt;li&gt;删除大数据表&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
 &lt;span class="c1"&gt;#&lt;/span&gt;
 &lt;span class="nv"&gt;dbname&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dbname&amp;#39;&lt;/span&gt;
@@ -632,5 +634,77 @@
     &lt;span class="k"&gt;fi&lt;/span&gt;
     sleep &lt;span class="nv"&gt;$sleeptime&lt;/span&gt;
 &lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;统计最大的前十个表&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="nv"&gt;MYSQL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mysql -u[user] -t -e &amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;TMP_FILE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;biggest_table.txt
+
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;db 最大的十张表&amp;quot;&lt;/span&gt; &amp;gt;&lt;span class="nv"&gt;$TMP_FILE&lt;/span&gt;
+
+&lt;span class="nv"&gt;$MYSQL&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;SELECT CONCAT(table_schema, &amp;#39;.&amp;#39;, table_name), CONCAT(ROUND(table_rows / 1000000, 2), &amp;#39;M&amp;#39;) rows, CONCAT(ROUND(data_length / ( 1024 * 1024 * 1024 ), 2), &amp;#39;G&amp;#39;)                    DATA, CONCAT(ROUND(index_length / ( 1024 * 1024 * 1024 ), 2), &amp;#39;G&amp;#39;)                   idx,CONCAT(ROUND(( data_length + index_length ) / ( 1024 * 1024 * 1024 ), 2), &amp;#39;G&amp;#39;) total_size,ROUND(index_length / data_length, 2)                                           idxfrac FROM   information_schema.TABLES where table_schema = &amp;#39;db&amp;#39; ORDER  BY data_length + index_length DESC LIMIT  10;&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt;&lt;span class="nv"&gt;$TMP_FILE&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;检查Mariadb galera集群的健康状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;#/bin/bash&lt;/span&gt;
+
+&lt;span class="nv"&gt;MYSQL_USERNAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;root&amp;quot;&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    &lt;span class="nv"&gt;MYSQL_PASSWORD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;{{ mysql_root_pass }}&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;
+    &lt;span class="nv"&gt;MYSQL_PASSWORD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;fi&lt;/span&gt;
+
+&lt;span class="nv"&gt;ERR_FILE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/dev/null&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;DEFAULTS_EXTRA_FILE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/etc/my.cnf&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;TIMEOUT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;
+&lt;span class="nv"&gt;EXTRA_ARGS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class="k"&gt;function&lt;/span&gt; service_status&lt;span class="o"&gt;()&lt;/span&gt;
+ &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[[&lt;/span&gt; -n &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$MYSQL_USERNAME&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+        &lt;span class="nv"&gt;EXTRA_ARGS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$EXTRA_ARGS&lt;/span&gt;&lt;span class="s2"&gt; --user=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;MYSQL_USERNAME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;fi&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[[&lt;/span&gt; -n &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$MYSQL_PASSWORD&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+        &lt;span class="nv"&gt;EXTRA_ARGS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$EXTRA_ARGS&lt;/span&gt;&lt;span class="s2"&gt; --password=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;MYSQL_PASSWORD&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;fi&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[[&lt;/span&gt; -r &lt;span class="nv"&gt;$DEFAULTS_EXTRA_FILE&lt;/span&gt; &lt;span class="o"&gt;]]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="k"&gt;then&lt;/span&gt;
+        &lt;span class="nv"&gt;MYSQL_CMDLINE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/usr/local/mysql/bin/mysql --defaults-extra-file=&lt;/span&gt;&lt;span class="nv"&gt;$DEFAULTS_EXTRA_FILE&lt;/span&gt;&lt;span class="s2"&gt; -nNE --connect-timeout=&lt;/span&gt;&lt;span class="nv"&gt;$TIMEOUT&lt;/span&gt;&lt;span class="s2"&gt; \&lt;/span&gt;
+&lt;span class="s2"&gt;                        --user=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;MYSQL_USERNAME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; --password=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;MYSQL_PASSWORD&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;
+        &lt;span class="nv"&gt;MYSQL_CMDLINE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/usr/local/mysql/bin/mysql -nNE --connect-timeot=&lt;/span&gt;&lt;span class="nv"&gt;$TIMEOUT&lt;/span&gt;&lt;span class="s2"&gt; --user=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;MYSQL_USERNAME&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; --password=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;MYSQL_PASSWORD&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;fi&lt;/span&gt;
+
+    &lt;span class="nv"&gt;wsrep_local_state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;&lt;span class="nv"&gt;$MYSQL_CMDLINE&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;SHOW STATUS LIKE &amp;#39;wsrep_local_state&amp;#39;;&amp;quot;&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;ERR_FILE&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; tail -1 &lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&amp;gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;ERR_FILE&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+    &lt;span class="nv"&gt;wsrep_local_state_comment&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;&lt;span class="nv"&gt;$MYSQL_CMDLINE&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;SHOW STATUS LIKE &amp;#39;wsrep_local_state_comment&amp;#39;;&amp;quot;&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;ERR_FILE&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; tail -1 &lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&amp;gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;ERR_FILE&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+    &lt;span class="nv"&gt;wsrep_cluster_status&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;&lt;span class="nv"&gt;$MYSQL_CMDLINE&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;SHOW STATUS LIKE &amp;#39;wsrep_cluster_status&amp;#39;;&amp;quot;&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;ERR_FILE&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; tail -1 &lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&amp;gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;ERR_FILE&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;wsrep_cluster_status&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Primary&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="o"&gt;[[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;wsrep_local_state_comment&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Synced&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;wsrep_local_state&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;4&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]]&lt;/span&gt;
+    &lt;span class="k"&gt;then&lt;/span&gt;
+        &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;true&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;
+        &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;false&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;fi&lt;/span&gt;
+ &lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;function&lt;/span&gt; exec_next&lt;span class="o"&gt;()&lt;/span&gt;
+&lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="nv"&gt;taga&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;true&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="nv"&gt;$taga&lt;/span&gt;
+    &lt;span class="k"&gt;do&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;service_status&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+            &lt;span class="nv"&gt;taga&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;false&amp;quot;&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt;
+            sleep 5s
+        &lt;span class="k"&gt;fi&lt;/span&gt;
+    &lt;span class="k"&gt;done&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="sb"&gt;`&lt;/span&gt;exec_next&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="c1"&gt;#u&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 </description><author>libiao163@gmail.com (酒后的阿bill)</author><guid isPermaLink="true">/archives/delete_big_tables/</guid><pubDate>Fri, 27 Dec 2019 16:23:00 +0806</pubDate></item></channel></rss>
