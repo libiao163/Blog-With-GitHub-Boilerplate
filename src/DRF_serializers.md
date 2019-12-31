@@ -62,8 +62,8 @@ class Servers(models.Model):
 
 class DataDisk(models.Model):
 	server = models.ForeignKey(Servers,null=True)
-	dataDiskID = models.CharField('系统磁盘容量’，max_length=32, help_text='系统磁盘容量’)
-	dataDiskSize = models.CharField('系统磁盘容量’，max_length=10, help_text='系统磁盘容量’)
+	dataDiskID = models.CharField('系统磁盘容量’，max_length=32, help_text='系统磁盘容量')
+	dataDiskSize = models.CharField('系统磁盘容量’，max_length=10, help_text='系统磁盘容量')
 ```
 
 ## 2.2 创建序列化类
