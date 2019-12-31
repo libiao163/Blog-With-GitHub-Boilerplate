@@ -33,12 +33,12 @@ excerpt: Django REST framework 序列化反序列化
 
 - 三块数据磁盘
 ```json
-('instanceld': 'ins-olfzusjv', 'instanceType': 'M2.MEDIUM16', 'cpu': 2, 'memory': 16, 'instanceName':'运维测试 1-公用'cre atedTime': '2019-11-14T04:57:06Z', 'expiredTime': '2020-05-14T04:57:11Z', 'bandwidthOut': 1, 'systemDiskID': 'disk-3u84a3q 5', 'systemDiskSize': 50, 'dataDisks': [('DiskSize': 200, 'DiskType': 'CLOUD_SSD', 'DiskId': 'disk-0sw362zd', 'DeleteWithI nstance': None), ('DiskSize': 110, 'DiskType': 'CLOUD_BASIC', 'DiskId': 'disk-nt2s8z11', 'DeleteWithInstance': None), ('Di skSize': 100, 'DiskType': 'CLOUD_BASIC', 'DiskId': 'disk-h00ds6mt', 'DeleteWithInstance': None)])
+('instanceId': 'ins-olfzusjv', 'instanceType': 'M2.MEDIUM16', 'cpu': 2, 'memory': 16, 'instanceName':'运维测试 1-公用'cre atedTime': '2019-11-14T04:57:06Z', 'expiredTime': '2020-05-14T04:57:11Z', 'bandwidthOut': 1, 'systemDiskID': 'disk-3u84a3q 5', 'systemDiskSize': 50, 'dataDisks': [('DiskSize': 200, 'DiskType': 'CLOUD_SSD', 'DiskId': 'disk-0sw362zd', 'DeleteWithI nstance': None), ('DiskSize': 110, 'DiskType': 'CLOUD_BASIC', 'DiskId': 'disk-nt2s8z11', 'DeleteWithInstance': None), ('Di skSize': 100, 'DiskType': 'CLOUD_BASIC', 'DiskId': 'disk-h00ds6mt', 'DeleteWithInstance': None)])
 ```
 
 - 无数据盘
 ```json
-('instanceld': 'ins-olfzusjv', 'instanceType': 'M2.MEDIUM16', 'cpu': 2, 'memory': 16, 'instanceName':'运维测试 1-公用'cre atedTime': '2019-11-14T04:57:06Z', 'expiredTime': '2020-05-14T04:57:11Z', 'bandwidthOut': 1, 'systemDiskID': 'disk-3u84a3q 5', 'systemDiskSize': 50, 'dataDisks': None)
+('instanceId': 'ins-olfzusjv', 'instanceType': 'M2.MEDIUM16', 'cpu': 2, 'memory': 16, 'instanceName':'运维测试 1-公用'cre atedTime': '2019-11-14T04:57:06Z', 'expiredTime': '2020-05-14T04:57:11Z', 'bandwidthOut': 1, 'systemDiskID': 'disk-3u84a3q 5', 'systemDiskSize': 50, 'dataDisks': None)
 ```
 
 - 使用两个模型存储数据：s ervers模型用于存储服务器的常规、普通参数对应的数据，datadisk模型用于存储数据磁盘的数据。
@@ -56,8 +56,8 @@ from django.db import models
 
 class Servers(models.Model):
 	instanceld = models.CharField('服务器实例 ID', max_length=32, db_index=True, help_text='服务器实例 ID')
-	instanceType = models.CharField('服务器实例类型’，max_length=32, help_text='服务器实例类型’)
-	cpu = models.CharField('CPU 核数'，max_length=5, help_text='CPU', help_text='CPU 核数')
+	instanceType = models.CharField('服务器实例类型’，max_length=32, help_text='服务器实例类型')
+	cpu = models.CharField('CPU 核数',max_length=5, help_text='CPU', help_text='CPU 核数')
 	memory = models.CharField('内存大小(GB)', max_length=10, help_text='内存大小(GB)')
 
 class DataDisk(models.Model):
