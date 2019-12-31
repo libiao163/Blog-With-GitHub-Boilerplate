@@ -14,14 +14,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 
     <url>
-        <loc>/archives/mysql_scripts/</loc>
-        <lastmod>2019-12-27</lastmod>
+        <loc>/archives/Python_Django_REST_framework/</loc>
+        <lastmod>2019-12-31</lastmod>
         <changefreq>always</changefreq>
         <priority>0.5</priority>
     </url>
 
     <url>
-        <loc>/archives/Python_Django_REST_framework/</loc>
+        <loc>/archives/mysql_scripts/</loc>
         <lastmod>2019-12-27</lastmod>
         <changefreq>always</changefreq>
         <priority>0.5</priority>
