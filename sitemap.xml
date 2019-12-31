@@ -21,6 +21,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     </url>
 
     <url>
+        <loc>/archives/Python_Django_REST_framework/</loc>
+        <lastmod>2019-12-27</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <url>
         <loc>/archives/my-first-awesome-post/</loc>
         <lastmod>2019-12-25</lastmod>
         <changefreq>always</changefreq>
