@@ -33,7 +33,7 @@ excerpt: Django REST framework 序列化反序列化
 
 - 三块数据磁盘
 ```json
-('instanceId': 'ins-olfzusjv', 'instanceType': 'M2.MEDIUM16', 'cpu': 2, 'memory': 16, 'instanceName':'运维测试 1-公用'cre atedTime': '2019-11-14T04:57:06Z', 'expiredTime': '2020-05-14T04:57:11Z', 'bandwidthOut': 1, 'systemDiskID': 'disk-3u84a3q 5', 'systemDiskSize': 50, 'dataDisks': [('DiskSize': 200, 'DiskType': 'CLOUD_SSD', 'DiskId': 'disk-0sw362zd', 'DeleteWithI nstance': None), ('DiskSize': 110, 'DiskType': 'CLOUD_BASIC', 'DiskId': 'disk-nt2s8z11', 'DeleteWithInstance': None), ('Di skSize': 100, 'DiskType': 'CLOUD_BASIC', 'DiskId': 'disk-h00ds6mt', 'DeleteWithInstance': None)])
+('instanceId': 'ins-olfzusjv','instanceType': 'M2.MEDIUM16','cpu': 2, 'memory': 16, 'instanceName':'运维测试 1-公用'cre atedTime': '2019-11-14T04:57:06Z', 'expiredTime': '2020-05-14T04:57:11Z', 'bandwidthOut': 1, 'systemDiskID': 'disk-3u84a3q 5', 'systemDiskSize': 50, 'dataDisks': [('DiskSize': 200, 'DiskType': 'CLOUD_SSD', 'DiskId': 'disk-0sw362zd', 'DeleteWithI nstance': None), ('DiskSize': 110, 'DiskType': 'CLOUD_BASIC', 'DiskId': 'disk-nt2s8z11', 'DeleteWithInstance': None), ('Di skSize': 100, 'DiskType': 'CLOUD_BASIC', 'DiskId': 'disk-h00ds6mt', 'DeleteWithInstance': None)])
 ```
 
 - 无数据盘
