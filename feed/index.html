@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>悄悄生长</title><link>/</link><description>认真是我们参与这个社会的方式，认真是我们改变这个社会的方式</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>${static_prefix}logo.png</url><title>悄悄生长</title><link>/</link></image><language>zh-CN</language><lastBuildDate>Tue, 07 Jan 2020 02:54:41 +0806</lastBuildDate><pubDate>Tue, 07 Jan 2020 02:54:41 +0806</pubDate><item><title>ansible keywords</title><link>/archives/my-first-awesome-post/</link><description>&lt;blockquote&gt;&lt;p&gt;ansible 2.9 版本&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>悄悄生长</title><link>/</link><description>认真是我们参与这个社会的方式，认真是我们改变这个社会的方式</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>${static_prefix}logo.png</url><title>悄悄生长</title><link>/</link></image><language>zh-CN</language><lastBuildDate>Sun, 19 Jan 2020 07:25:45 +0806</lastBuildDate><pubDate>Sun, 19 Jan 2020 07:25:45 +0806</pubDate><item><title>ansible keywords</title><link>/archives/my-first-awesome-post/</link><description>&lt;blockquote&gt;&lt;p&gt;ansible 2.9 版本&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;Play&lt;/h2&gt;
 &lt;blockquote&gt;&lt;p&gt;在 play 下可用的关键字&lt;/p&gt;
@@ -880,4 +880,59 @@
     &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;^&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;include&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;route&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urls&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
   &lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-</description><author>libiao163@gmail.com (酒后的阿bill)</author><guid isPermaLink="true">/archives/Python_Django_REST_framework/</guid><pubDate>Tue, 31 Dec 2019 17:23:00 +0806</pubDate></item></channel></rss>
+</description><author>libiao163@gmail.com (酒后的阿bill)</author><guid isPermaLink="true">/archives/Python_Django_REST_framework/</guid><pubDate>Tue, 31 Dec 2019 17:23:00 +0806</pubDate></item><item><title>Rabbitmq 高可用</title><link>/archives/Rabbitmq_HA/</link><description>&lt;h1&gt;一 HA方案&lt;/h1&gt;
+&lt;p&gt;使用rabbitmq集群，一方面是想通过集群提升消息的处理速度；另一方面，防止一个节点不可用导致整个平台出现故障。使用集群后，当一个节点出现故障后，需要某种方法使得客户端感知，切换到无故障的节点，达到HA 的目的。&lt;/p&gt;
+&lt;h3&gt;rabbimq 有两种HA 方案：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;增加集群管理器（如：Pacemaker）在集群node 出故障时感知并处理&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;客户端感知故障，自动切换&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;对于以上两种，增加pacemaker在编写客户端时，不用考虑怎么处理集群故障。客户端实现比较简单。增加pacemaker 相当于增加了一层，所以又要考虑pacemaker的HA，pacemaker成为了单点，其出现故障将会是整个集群的故障。&lt;/p&gt;
+&lt;p&gt;客户端自行感知故障，需要实现 pacemaker 类似的功能： 感知故障，切换到正确节点，恢复状态。给客户端的编写带来复杂度。但是也因为少了一层，故障域会减少。&lt;/p&gt;
+&lt;p&gt;以上两种功能，出现故障，客户端的连接切换到另一个节点时，可以得到故障节点相同的信息。rabbitmq 本身提供了这方面的功能：镜像队列。&lt;/p&gt;
+&lt;p&gt;镜像队列可以保证多个节点有相同的信息，这样就使得客户端发现故障在重连时恢复至故障之前的状态。&lt;/p&gt;
+&lt;h2&gt;1.1 rabbitmq 镜像队列&lt;/h2&gt;
+&lt;p&gt;从 3.6.0 版本开始，RabbitMQ 支持镜像队列功能，官方文档在这里。与普通集群相比，其实质和普通模式不同之处在于，消息实体会主动在镜像节点间同步，而不是在 consumer 取数据时临时拉取。该模式带来的副作用也很明显，除了降低系统性能外，如果镜像队列数量过多，加之大量的消息进入，集群内部的网络带宽将会被这种同步通讯大大消耗掉。所以在对可靠性要求较高的场合中适用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Mirrorred queue 是 RabbitMQ 高可用的一种方案，相对于普通的集群方案来讲，queue中的消息每个节点都会存在一份 copy, 这个在单个节点失效的情况下，整个集群仍旧可以提供服务。但是由于数据需要在多个节点复制，在增加可用性的同时，系统的吞吐量会有所下降。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;选举机制：mirror queue 内部实现了一套选举算法，有一个 master 和多个slave，queue 中的消息以 master 为主。镜像队列有主从之分，一个主节点(master)，0个或多个从节点(slave)。当master宕掉后，会在 slave 中选举新的master，其选举算法为最早启动的节点。 若master节点失效，则 mirror queue 会自动选举出一个节点（slave中消息队列最长者）作为master，作为消息消费的基准参考; 在这种情况下可能存在ack消息未同步到所有节点的情况(默认异步)，若 slave 节点失效，mirror queue 集群中其他节点的状态无需改变。所以，看起来可以使用两节点的镜像队列集群。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用：对于publish，可以选择任意一个节点进行连接，rabbitmq内部若该节点不是master，则转发给master，master向其他slave节点发送该消息，后进行消息本地化处理，并组播复制消息到其他节点存储；对于consumer，可以选择任意一个节点进行连接，消费的请求会转发给master,为保证消息的可靠性，consumer需要进行ack确认，master收到ack后，才会删除消息，ack消息会同步(默认异步)到其他各个节点，进行slave节点删除消息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;1.2 镜像队列的A/A + Haproxy&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://greenstack.die.upm.es/2015/03/02/improving-ha-failures-with-tcp-timeouts/"&gt;http://greenstack.die.upm.es/2015/03/02/improving-ha-failures-with-tcp-timeouts/&lt;/a&gt; 这篇文章详细讲解了当一个节点down掉后,怎么处理.这里依然要启用镜像队列,且引入了HAproxy这个组件,增加了风险
+好处：
+haproxy 可以分散连接，不至于一个节点负载过重。&lt;/p&gt;
+&lt;h2&gt;1.3 镜像队列A/A + 客户端 heartbeat&lt;/h2&gt;
+&lt;p&gt;客户端保证HA，
+openstack 对于mq 的使用，封装了一个 sdk–oslo_message,并对mq 的集群场景做了优化，如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;配置多个mq node&lt;/li&gt;
+&lt;li&gt;heartbeat 功能检测异常(rpc server 使用另一种检查方式，类似 heartbeat )&lt;/li&gt;
+&lt;li&gt;打散连接防止一个节点负担过重
+以上三个功能，可以使得客户端自行判断集群是否出了故障。这样就可以不使用LB ,减少了因Haproxy故障带来的问题。也因为没有中间件，缩小了故障域，客户端保证HA &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;二 rabbitmq HA&lt;/h1&gt;
+&lt;h2&gt;2.1 集群要求&lt;/h2&gt;
+&lt;p&gt;一般我们集群使用三个节点，在集群能力不够时，我们可以适当增加  rabbitmq 节点个数，横向扩展增加集群吞吐量。
+针对三个节点，需要保证其中一个节点或者两个节点down掉，集群依然可以继续对外提供服务。所以要求&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;尽量在三个不同的机柜上&lt;/li&gt;
+&lt;li&gt;连接三个不同的交换机&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;2.2 集群配置&lt;/h2&gt;
+&lt;p&gt;三个节点，两个DISK节点，一个RAM节点&lt;/p&gt;
+&lt;h1&gt;三 集群降级策略&lt;/h1&gt;
+&lt;p&gt;思考的问题：&lt;/p&gt;
+&lt;h4&gt;1 在HA 已经满足的条件下，什么时候需要切换到备用集群&lt;/h4&gt;
+&lt;p&gt;rabbitmq node 尽量在三个不同的机柜上，连接三个不同的交换机。如果在这种情况下发生故障，如果需要对外继续提供您服务，需要考虑的连同 controller 节点一起，做到机房的HA。这种情况下，api 上层负载均衡可以做到流量切换。mq 降级到备份集群。&lt;/p&gt;
+&lt;h4&gt;2 备用集群怎么自动切换&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;手动切换oslo 配置&lt;/li&gt;
+&lt;li&gt;修改oslo message 组件，当满足一定条件后自动切换&lt;/li&gt;
+&lt;/ul&gt;
+</description><author>libiao163@gmail.com (酒后的阿bill)</author><guid isPermaLink="true">/archives/Rabbitmq_HA/</guid><pubDate>Sun, 19 Jan 2020 15:23:00 +0806</pubDate></item></channel></rss>
