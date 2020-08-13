@@ -14,10 +14,10 @@ enable_jsdelivr = {
 }
 
 # 站点设置
-site_name = "悄悄生长"
+site_name = ""
 site_logo = "${static_prefix}logo.png"
 site_build_date = "2019-12-25T18:27+08:00"
-author = "酒后的阿bill"
+author = "libiao"
 email = "libiao163@gmail.com"
 author_homepage = "https://libiao163.github.io/"
 description = "认真是我们参与这个社会的方式，认真是我们改变这个社会的方式"
