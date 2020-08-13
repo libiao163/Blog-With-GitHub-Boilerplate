@@ -14,7 +14,7 @@ enable_jsdelivr = {
 }
 
 # 站点设置
-site_name = ""
+site_name = "L笔记"
 site_logo = "${static_prefix}logo.png"
 site_build_date = "2019-12-25T18:27+08:00"
 author = "libiao"
