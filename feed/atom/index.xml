@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>/</id><title>悄悄生长</title><updated>2020-01-27T15:40:44.494550+08:06</updated><author><name>酒后的阿bill</name><email>libiao163@gmail.com</email></author><link href="/" rel="alternate"/><generator uri="http://lkiesow.github.io/python-feedgen" version="0.8.0">python-feedgen</generator><logo>${static_prefix}logo.png</logo><subtitle>认真是我们参与这个社会的方式，认真是我们改变这个社会的方式</subtitle><entry><id>/archives/my-first-awesome-post/</id><title>ansible keywords</title><updated>2020-01-27T15:40:44.494804+00:00</updated><author><name>酒后的阿bill</name><email>libiao163@gmail.com</email><uri>https://libiao163.github.io/</uri></author><content>&lt;blockquote&gt;&lt;p&gt;ansible 2.9 版本&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><id>/</id><title>L笔记</title><updated>2020-08-13T06:21:23.656951+08:06</updated><author><name>libiao</name><email>libiao163@gmail.com</email></author><link href="/" rel="alternate"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><logo>${static_prefix}logo.png</logo><subtitle>认真是我们参与这个社会的方式，认真是我们改变这个社会的方式</subtitle><entry><id>/archives/my-first-awesome-post/</id><title>ansible keywords</title><updated>2020-08-13T06:21:23.657140+00:00</updated><author><name>酒后的阿bill</name><email>libiao163@gmail.com</email><uri>https://libiao163.github.io/</uri></author><content>&lt;blockquote&gt;&lt;p&gt;ansible 2.9 版本&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;Play&lt;/h2&gt;
 &lt;blockquote&gt;&lt;p&gt;在 play 下可用的关键字&lt;/p&gt;
@@ -601,7 +601,7 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-</content><link href="/archives/my-first-awesome-post/" rel="alternate"/><published>2019-12-25T20:15:00+08:06</published></entry><entry><id>/archives/mysql_scripts/</id><title>mysql 脚本汇总</title><updated>2020-01-27T15:40:44.494776+00:00</updated><author><name>酒后的阿bill</name><email>libiao163@gmail.com</email><uri>https://libiao163.github.io/</uri></author><content>&lt;ul&gt;
+</content><link href="/archives/my-first-awesome-post/" rel="alternate"/><published>2019-12-25T20:15:00+08:06</published></entry><entry><id>/archives/mysql_scripts/</id><title>mysql 脚本汇总</title><updated>2020-08-13T06:21:23.657118+00:00</updated><author><name>酒后的阿bill</name><email>libiao163@gmail.com</email><uri>https://libiao163.github.io/</uri></author><content>&lt;ul&gt;
 &lt;li&gt;删除大数据表&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
@@ -707,7 +707,7 @@
 
 &lt;span class="sb"&gt;`&lt;/span&gt;exec_next&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="c1"&gt;#u&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-</content><link href="/archives/mysql_scripts/" rel="alternate"/><published>2019-12-27T16:23:00+08:06</published></entry><entry><id>/archives/Python_Django_REST_framework/</id><title>DRF 序列化反序列化</title><updated>2020-01-27T15:40:44.494696+00:00</updated><author><name>酒后的阿bill</name><email>libiao163@gmail.com</email><uri>https://libiao163.github.io/</uri></author><content>&lt;h1&gt;1. 处理流程&lt;/h1&gt;
+</content><link href="/archives/mysql_scripts/" rel="alternate"/><published>2019-12-27T16:23:00+08:06</published></entry><entry><id>/archives/Python_Django_REST_framework/</id><title>DRF 序列化反序列化</title><updated>2020-08-13T06:21:23.657094+00:00</updated><author><name>酒后的阿bill</name><email>libiao163@gmail.com</email><uri>https://libiao163.github.io/</uri></author><content>&lt;h1&gt;1. 处理流程&lt;/h1&gt;
 &lt;h2&gt;1.1 反序列化(数据入库)：&lt;/h2&gt;
 &lt;p&gt;在creat e方法中把关联数据单独拿出来，先正常处理其中一个模型的数据(如果是多对一关系，则需要先创建“一”这个模型的数据)， 再调用自定义的函数处理另一个模型的数据。&lt;/p&gt;
 &lt;h2&gt;1.2 序列化(数据展示)：&lt;/h2&gt;
@@ -880,7 +880,7 @@
     &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;^&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;include&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;route&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urls&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
   &lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-</content><link href="/archives/Python_Django_REST_framework/" rel="alternate"/><published>2019-12-31T17:23:00+08:06</published></entry><entry><id>/archives/Rabbitmq_HA/</id><title>Rabbitmq 高可用</title><updated>2020-01-27T15:40:44.494666+00:00</updated><author><name>酒后的阿bill</name><email>libiao163@gmail.com</email><uri>https://libiao163.github.io/</uri></author><content>&lt;h1&gt;一 HA方案&lt;/h1&gt;
+</content><link href="/archives/Python_Django_REST_framework/" rel="alternate"/><published>2019-12-31T17:23:00+08:06</published></entry><entry><id>/archives/Rabbitmq_HA/</id><title>Rabbitmq 高可用</title><updated>2020-08-13T06:21:23.657066+00:00</updated><author><name>酒后的阿bill</name><email>libiao163@gmail.com</email><uri>https://libiao163.github.io/</uri></author><content>&lt;h1&gt;一 HA方案&lt;/h1&gt;
 &lt;p&gt;使用rabbitmq集群，一方面是想通过集群提升消息的处理速度；另一方面，防止一个节点不可用导致整个平台出现故障。使用集群后，当一个节点出现故障后，需要某种方法使得客户端感知，切换到无故障的节点，达到HA 的目的。&lt;/p&gt;
 &lt;h3&gt;rabbimq 有两种HA 方案：&lt;/h3&gt;
 &lt;ul&gt;
@@ -935,7 +935,7 @@ openstack 对于mq 的使用，封装了一个 sdk–oslo_message,并对mq 的�
 &lt;li&gt;手动切换oslo 配置&lt;/li&gt;
 &lt;li&gt;修改oslo message 组件，当满足一定条件后自动切换&lt;/li&gt;
 &lt;/ul&gt;
-</content><link href="/archives/Rabbitmq_HA/" rel="alternate"/><published>2020-01-19T15:23:00+08:06</published></entry><entry><id>/archives/8&amp;24/</id><title>k.o.b.e</title><updated>2020-01-27T15:40:44.494613+00:00</updated><author><name>酒后的阿bill</name><email>libiao163@gmail.com</email><uri>https://libiao163.github.io/</uri></author><content>&lt;p&gt;I Love This Game&lt;/p&gt;
+</content><link href="/archives/Rabbitmq_HA/" rel="alternate"/><published>2020-01-19T15:23:00+08:06</published></entry><entry><id>/archives/8&amp;24/</id><title>k.o.b.e</title><updated>2020-08-13T06:21:23.657012+00:00</updated><author><name>酒后的阿bill</name><email>libiao163@gmail.com</email><uri>https://libiao163.github.io/</uri></author><content>&lt;p&gt;I Love This Game&lt;/p&gt;
 &lt;h2&gt;I Love This Game&lt;/h2&gt;
 &lt;p&gt;12岁那年，百无聊赖的我躺在爷爷家的椅子上看着电视，不耐烦的来回切换到中央2套只为等待一个上古娱乐节目：开心辞典，换了一圈电视台发现全是广告，只能切回中央2套选择继续等待开心辞典播出，电视上播放着一种来自美国的“手球”比赛，当时因为大空翼迷恋上足球的我忍受了10分钟后便一发不可收拾的爱上了这项运动，我一定想不到，比赛中那个劲爆扣篮的小伙从此会成为我一生的信仰。&lt;/p&gt;
 &lt;h2&gt;Where Amazing Happens&lt;/h2&gt;
